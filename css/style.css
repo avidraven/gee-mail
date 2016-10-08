@@ -1,0 +1,53 @@
+body{
+	font-family: 'Arial', sans-serif;
+}
+
+#GeeMailHeader{
+	background-color: lightblue;
+}
+
+#GeeMailText{
+	color: blue;
+	font-style: italic;
+	font-size: 500%;
+	text-align: center;
+}
+
+#GeeMailboxIcon{
+	width: 82px;
+	height: 86px;
+	position: relative;
+	float: right;
+	right: 625px;
+}
+
+#GeeMailInboxIcon{
+	width: 64px;
+	height: 64px;
+	position: relative;
+	float: left;
+	bottom: 20px;
+}
+
+#GeeMailInbox{
+	border-bottom-style: double;
+	padding-bottom: 20px;
+}
+
+.messageBoxClass{
+	border-style: solid;
+	margin: 20px;
+}
+
+.messageSubjectClass{
+	font-weight: bold;
+}
+
+.messageDateClass{
+	float: right;
+}
+
+.messageBodyClass{
+	display: none;
+	padding: 20px;
+}
