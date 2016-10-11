@@ -9,16 +9,14 @@ body{
 #GeeMailText{
 	color: blue;
 	font-style: italic;
-	font-size: 500%;
+	font-size: 400%;
 	text-align: center;
+	margin-bottom: 0px;
 }
 
 #GeeMailboxIcon{
-	width: 82px;
-	height: 86px;
-	position: relative;
-	float: right;
-	right: 625px;
+	width: 50px;
+	height: 53px;
 }
 
 #GeeMailInboxIcon{
@@ -35,8 +33,9 @@ body{
 }
 
 .messageBoxClass{
-	border-style: solid;
+	border-style: groove;
 	margin: 20px;
+	padding: 5px;
 }
 
 .messageSubjectClass{

@@ -6,17 +6,23 @@
       window.onload = function(){
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
-        
+
+        var messageCount = 0;
+        var newMessageCount = 0;
+
+        var inboxNumber = document.createElement('span');
+        GeeMailNumber.appendChild(inboxNumber);
+
+        var messageInterval = setInterval(getNewMail,1000);
+
         function getMail(messages){
 
-        	var newMessage = getNewMessage();
-        	window.geemails.push(newMessage);
+        	for (var i = 0; i < messages.length; i++) {       		
+        		messageCount += 1;
 
-
-        	for (var i = 0; i < messages.length; i++) {
-        		
         		var messageBox = document.createElement('div');
         		messageBox.className = 'messageBoxClass';
+        		messageBox.addEventListener('click',toggleMessage);
         		GeeMailMessages.appendChild(messageBox);
 
         		var messageDate = document.createElement('div');
@@ -31,7 +37,7 @@
 
         		var messageSender = document.createElement('div');
         		messageSender.className = 'messageSenderClass';
-        		messageSender.innerHTML = 'Sender: ' + messages[i].sender;
+        		messageSender.innerHTML = 'From: ' + messages[i].sender;
         		messageBox.appendChild(messageSender);
 
         		var messageBody = document.createElement('div');
@@ -40,21 +46,27 @@
         		messageBox.appendChild(messageBody);
         	}
 
-					var inboxNumber = document.createElement('span');
-        	inboxNumber.innerHTML = messages.length;
-        	GeeMailNumber.appendChild(inboxNumber);
-        	
+        	inboxNumber.innerHTML = messageCount;
         }
 
-        getMail(window.geemails);
+        function getNewMail(){
 
-        // setInterval(getMail(window.geemails),1000);
-
-        var boxClass = document.getElementsByClassName('messageBoxClass');
-
-        for (var i = 0; i < boxClass.length; i++) {
-        	boxClass[i].addEventListener('click',toggleMessage);
+        	if (newMessageCount >= 1){
+        		clearInterval(messageInterval);
+        	}else{
+        		newMessageCount += 1;
+        		var newGeeMails = [];
+        		var newMessage = getNewMessage();
+        		newGeeMails.push(newMessage);
+        		getMail(newGeeMails);
+        	}
         }
+
+        // var boxClass = document.getElementsByClassName('messageBoxClass');
+
+        // for (var i = 0; i < boxClass.length; i++) {
+        // 	boxClass[i].addEventListener('click',toggleMessage);
+        // }
 
         function toggleMessage(){
         	var showBody = this.querySelectorAll('.messageBodyClass')[0];
@@ -65,24 +77,13 @@
   				}
         }
 
-        // function getNewMail(){
-        // 	var newMessage = getNewMessage();
-        // 	window.geemails.push(newMessage);
-        // 	setInterval(getMail(window.geemails),3000);
-        // }
-
-        // getNewMail();
-
-
-
-
+        getMail(window.geemails);
       };
     </script>
 	</head>
 	<body>
 		<div id="GeeMailHeader">
-<!-- 			<img src="assets/mailbox.png" alt="Mailbox" id="GeeMailboxIcon">
- -->			<h1 id="GeeMailText">GeeMail</h1>
+			<h1 id="GeeMailText">GeeMail <img src="assets/mailbox.png" alt="Mailbox" id="GeeMailboxIcon"></h1>
 		</div>
 		<div id="GeeMailContent">
 			<img src="assets/inbox.png" alt="Inbox" id="GeeMailInboxIcon">
